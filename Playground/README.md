@@ -1,4 +1,4 @@
-## Google Cloud Platform Python Samples
+## Quick deployement
 
 [![Open in Cloud Shell][shell_img]][shell_link]
 

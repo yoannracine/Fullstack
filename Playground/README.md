@@ -20,3 +20,6 @@ corresponding folder.
 ## Licensing
 
 * See [LICENSE](LICENSE)
+
+
+https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/bigquery/cloud-client

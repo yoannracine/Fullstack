@@ -14,10 +14,7 @@
     USAGE:    launchDB.pl 
 =cut
 
-use lib '/home/yoann/perl5/perlbrew/perls/perl-5.20.1/lib/site_perl/5.20.1/x86_64-linux/DBD';
-use lib '/home/yoann/perl5/lib/lib/site_perl/5.20.1/';
-
-use v5.10;
+use 5.010;
 use strict;
 use warnings;
 use File::Basename;
@@ -25,7 +22,8 @@ use DBI;
 use POSIX qw(strftime);
 use Log::Log4perl qw(get_logger :levels :no_extra_logdie_message);
 
-my $dsn = "dbi:mysql:database=MARKETDATA;host=localhost";
+my $datetime = strftime("%Y%m%d",localtime());
+my $dsn      = "dbi:mysql:database=MARKETDATA;host=localhost";
 my $row;
 
 use constant user => "$ENV{USER}";

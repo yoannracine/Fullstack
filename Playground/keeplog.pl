@@ -18,30 +18,18 @@ use 5.010;
 use strict;
 use warnings;
 use File::Basename;
-use DBI;
 use POSIX qw(strftime);
-use Log::Log4perl qw(get_logger :levels :no_extra_logdie_message);
+use Log::Log4perl qw(get_logger);
 
 my $datetime = strftime("%Y%m%d",localtime());
-my $dsn      = "dbi:mysql:database=MARKETDATA;host=localhost";
-my $row;
 
-use constant user => "$ENV{USER}";
-use constant pass => "$ENV{PASS}";
 
-#############################################################################
-#                              connect to DB                                #
-#############################################################################
+use constant LOGCONF => "$ENV{LOGCONF}";
 
-my $dbh = DBI -> connect($dsn, user, pass);
+Log::Log4perl::init(LOGCONF);
 
-my $sth = $dbh -> prepare("SELECT * FROM INSTRUMENT_DBF LIMIT 10");
-$sth->execute();
+my $logger = Log::Log4perl->get_logger();
 
-while ($row = $sth->fetchrow_arrayref()) {
-    print "@$row[0] @$row[1] @$row[2]\n";
-}
+$logger->info("Script Start");
+$logger->info("Parent PID -> ");
 
-$sth->finish();
-
-$dbh -> disconnect();
